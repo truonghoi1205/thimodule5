@@ -51,7 +51,7 @@ const List = () => {
 
   if (products.length === 0)
     return (
-      <div>
+      <div className="container rounded shadow-sm p-3 mt-2">
         <div className="d-flex justify-content-between align-items-center mb-3">
           <h3 className="m-0">Danh sách sản phẩm</h3>
           <Link className="btn btn-sm btn-primary mt-3" to="/create">
@@ -83,8 +83,8 @@ const List = () => {
       </div>
     );
   return (
-    <div className="container">
-      <div className="d-flex justify-content-between align-items-center mb-3">
+    <div className="container rounded shadow-sm p-3 mt-2">
+      <div className="d-flex justify-content-between align-items-center mb-2">
         <h3 className="m-0">Danh sách sản phẩm</h3>
         <Link className="btn btn-sm btn-primary mt-3" to="/create">
           Thêm mới
@@ -111,7 +111,7 @@ const List = () => {
           }}
         />
       </div>
-      <Table className="table table-hover table-bordered mt-5">
+      <Table className="table table-hover table-bordered mt-2">
         <thead>
           <tr>
             <th>#</th>
