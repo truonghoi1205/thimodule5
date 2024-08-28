@@ -48,40 +48,6 @@ const List = () => {
       label: c.name,
     })),
   ];
-
-  if (products.length === 0)
-    return (
-      <div className="container rounded shadow-sm p-3 mt-2">
-        <div className="d-flex justify-content-between align-items-center mb-3">
-          <h3 className="m-0">Danh sách sản phẩm</h3>
-          <Link className="btn btn-sm btn-primary mt-3" to="/create">
-            Thêm mới
-          </Link>
-        </div>
-        <input
-          className="form-control form-control w-25"
-          placeholder="Nhập tên sản phẩm"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <div className="mt-2 d-flex align-items-center">
-          <Select
-            options={categoryOptions}
-            value={selectedCategory}
-            onChange={(option) => setSelectedCategory(option)}
-            placeholder="Chọn thể loại"
-            styles={{
-              container: (provided) => ({
-                ...provided,
-                width: "160px",
-                fontSize: "0.850rem",
-              }),
-            }}
-          />
-        </div>
-        <p className="text-danger text-center">Không tìm thấy sản phẩm nào!</p>
-      </div>
-    );
   return (
     <div className="container rounded shadow-sm p-3 mt-2">
       <div className="d-flex justify-content-between align-items-center mb-2">
@@ -111,34 +77,38 @@ const List = () => {
           }}
         />
       </div>
-      <Table className="table table-hover table-bordered mt-2">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Mã sản phẩm</th>
-            <th>Tên sản phẩm</th>
-            <th>Thể Loại</th>
-            <th>Số lượng</th>
-            <th>Giá</th>
-            <th>Ngày nhập</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((p, index) => (
-            <tr key={p.id}>
-              <td>{index + 1}</td>
-              <td>{p.sku}</td>
-              <td>{p.name}</td>
-              <td>{p.category.name}</td>
-              <td>{p.quantity}</td>
-              <td>{Common.formatPrice(p.price)}</td>
-              <td>{Common.formatDateVi(p.date)}</td>
+      {products.length === 0 ? (
+        <p className="text-danger text-center mt-3">Không tìm thấy sản phẩm nào!</p>
+      ) : (
+        <Table className="table table-hover table-bordered mt-2">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Mã sản phẩm</th>
+              <th>Tên sản phẩm</th>
+              <th>Thể Loại</th>
+              <th>Số lượng</th>
+              <th>Giá</th>
+              <th>Ngày nhập</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {products.map((p, index) => (
+              <tr key={p.id}>
+                <td>{index + 1}</td>
+                <td>{p.sku}</td>
+                <td>{p.name}</td>
+                <td>{p.category.name}</td>
+                <td>{p.quantity}</td>
+                <td>{Common.formatPrice(p.price)}</td>
+                <td>{Common.formatDateVi(p.date)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
     </div>
-  );
+  );  
 };
 
 export default List;
